@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('admin')->group(function() {
+    Route::get('dashboard',function() {
+        return view('backend.dashboard');
+    });
+    Route::resource('service','ServiceController');
+    Route::resource('staff','StaffController');
+    Route::resource('customer', 'CustomerController');
+    Route::resource('appointment', 'AppointmentController');
+});

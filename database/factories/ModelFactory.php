@@ -22,3 +22,37 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+
+$factory->define(App\Staff::class, function (Faker\Generator $faker) {
+    return [
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'email' => $faker->email,
+        'tele_phone' => $faker->phoneNumber,
+    ];
+});
+
+$factory->define(App\Customer::class, function(Faker\Generator $faker) {
+    return [
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'email' => $faker->email,
+        'cellphone' => $faker->phoneNumber,
+        'workphone' => $faker->phoneNumber,
+        'homephone' => $faker->phoneNumber,
+        'country' => $faker->country,
+        'city' => $faker->city,
+        'state' => $faker->state,
+        'postal_code' => $faker->postcode,
+    ];
+});
+
+$factory->define(App\Service::class, function(Faker\Generator $faker) {
+    return [
+        'name' =>  $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'description' => $faker->text($maxNbChars = 200),
+        'duration' => $faker->biasedNumberBetween(30,60),
+        'is_over' => $faker->biasedNumberBetween(0,1);
+    ];
+});
