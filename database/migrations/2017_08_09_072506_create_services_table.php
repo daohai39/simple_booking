@@ -17,7 +17,8 @@ class CreateServicesTable extends Migration
             $table->increments('id');
             $table->string('name',100);
             $table->text('description')->nullable();
-            $table->integer('duration');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->tinyInteger('is_over')->default(0);
             $table->timestamps();
         });

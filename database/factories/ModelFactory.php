@@ -49,10 +49,18 @@ $factory->define(App\Customer::class, function(Faker\Generator $faker) {
 });
 
 $factory->define(App\Service::class, function(Faker\Generator $faker) {
+    $start_date =  $faker->dateTimeThisDecade();
+    $end_date = $faker->dateTimeThisDecade();
+    if ($start_date > $end_date) {
+        $copy = $start_date;
+        $start_date = $end_date;
+        $end_date = $copy;
+    }
     return [
         'name' =>  $faker->sentence($nbWords = 6, $variableNbWords = true),
         'description' => $faker->text($maxNbChars = 200),
-        'duration' => $faker->biasedNumberBetween(30,60),
-        'is_over' => $faker->biasedNumberBetween(0,1);
+        'start_date' => $start_date,
+        'end_date' => $end_date,
+        'is_over' => $faker->biasedNumberBetween(0,1),
     ];
 });

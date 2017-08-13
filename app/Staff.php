@@ -19,9 +19,9 @@ class Staff extends Model
     {
         return $this->belongsToMany('App\Service');
     }
-
-    // public function appointments()
-    // {
-    //     return $this->belongsTomany('App\Appointment');
-    // }
+    
+    public function timeslots()
+    {
+        return $this->hasMany('App\TimeSlot');
+    }
 }

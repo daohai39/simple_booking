@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service;
+use App\Staff;
 use App\Http\Requests\ServiceFormRequest;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,8 @@ class ServiceController extends Controller
     public function create()
     {
         //
-        return view('service.create');
+        $staffs = Staff::all(['id','first_name','last_name']);
+        return view('service.create',compact('staffs'));
     }
 
     /**
@@ -43,6 +45,7 @@ class ServiceController extends Controller
     public function store(ServiceFormRequest $request)
     {
         //
+        dd($request->all());
         $service = Service::create($request->only(['name','description','duration']));
         return redirect()->route('service.show',compact('service'));
     }

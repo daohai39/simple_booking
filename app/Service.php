@@ -22,4 +22,9 @@ class Service extends Model
     {
         return $this->hasMany('App\Appointment');
     }
+
+    public function timeslots()
+    {
+        return $this->hasMany('App\TimeSlot');
+    }
 }
