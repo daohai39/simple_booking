@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\Http\Requests\AppointmentFormRequest;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -36,7 +37,7 @@ class AppointmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AppointmentFormRequest $request)
     {
         //
         $appointment = Appointment::create($request->only([
@@ -79,7 +80,7 @@ class AppointmentController extends Controller
      * @param  \App\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Appointment $appointment)
+    public function update(AppointmentFormRequest $request, Appointment $appointment)
     {
         //
         $appointment->update($request->only([

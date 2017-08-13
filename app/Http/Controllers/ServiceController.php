@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service;
+use App\Http\Requests\ServiceFormRequest;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -39,7 +40,7 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceFormRequest $request)
     {
         //
         $service = Service::create($request->only(['name','description','duration']));
@@ -77,7 +78,7 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(ServiceFormRequest $request, Service $service)
     {
         //
         $service->update($request->only(['name','description','duration']));

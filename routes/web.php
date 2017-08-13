@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->middleware(['web'])->group(function() {
     Route::get('dashboard',function() {
         return view('backend.dashboard');
     });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStaffsTable extends Migration
+class CreateTimeslotsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateStaffsTable extends Migration
      */
     public function up()
     {
-        Schema::create('staffs', function (Blueprint $table) {
+        Schema::create('time_slots', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('first_name',100);
-            $table->string('last_name',100);
-            $table->string('email')->unique();
-            $table->string('tele_phone')->nullable();
+            $table->integer('staff_id')->unsigned();
+            $table->integer('service_id')->unsigned();
+            $table->dateTime('date');
+            $table->dateTime('time_avaiable');
+            $table->tinyInteger('is_booked')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateStaffsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staffs');
+        Schema::dropIfExists('time_slots');
     }
 }

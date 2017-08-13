@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Customer;
 use Illuminate\Http\Request;
+use App\Customer;
+use App\Http\Requests\CustomerFormRequest;
 
 class CustomerController extends Controller
 {
@@ -36,21 +37,10 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerFormRequest $request)
     {
         //
-        $customer = Customer::create($request->only([
-            'first_name',
-            'last_name',
-            'email',
-            'cellphone',
-            'workphone',
-            'homephone',
-            'country',
-            'city',
-            'state',
-            'postal_code'
-        ]));
+        $customer = Customer::create($request->all());
         return redirect()->route('customer.show', compact('customer'));
     }
 
@@ -85,21 +75,10 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(CustomerFormRequest $request, Customer $customer)
     {
         //s
-        $customer->update($request->only([
-            'first_name',
-            'last_name',
-            'email',
-            'cellphone',
-            'workphone',
-            'homephone',
-            'country',
-            'city',
-            'state',
-            'postal_code'
-        ]));
+        $customer->update($request->all());
         return redirect()->route('customer.show', $customer);
     }
 

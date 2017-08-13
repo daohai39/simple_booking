@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Staff;
+use App\Http\Requests\StaffFormRequest;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -39,7 +40,7 @@ class StaffController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StaffFormRequest $request)
     {
         //
         Staff::create($request->only(['first_name','last_name','email','tele_phone']));
@@ -78,7 +79,7 @@ class StaffController extends Controller
      * @param  \App\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Staff $staff)
+    public function update(StaffFormRequest $request, Staff $staff)
     {
         //
         $staff->update($request->only(['first_name','last_name','email','telephone']));

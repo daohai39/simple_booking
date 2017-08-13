@@ -2,6 +2,9 @@
 
 @section('content')
     <h1>Create customer</h1>
+
+   @include('template.errors')
+
     <form action="{{ route('customer.store') }}" method="POST">
         {{ csrf_field() }}
         <div class="form-group">
