@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service;
 use App\Staff;
+use App\Customer;
 use App\Http\Requests\ServiceFormRequest;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,8 @@ class ServiceController extends Controller
     {
         //
         $staffs = Staff::all(['id','first_name','last_name']);
-        return view('service.create',compact('staffs'));
+        $customers = Customer::all(['id','first_name','last_name','email']);
+        return view('service.create',compact('staffs','customers'));
     }
 
     /**
@@ -45,8 +47,13 @@ class ServiceController extends Controller
     public function store(ServiceFormRequest $request)
     {
         //
-        dd($request->all());
-        $service = Service::create($request->only(['name','description','duration']));
+        $staff_ids = $request->staffs;
+        $staffs = Staff::findMany($staff_ids);
+        $customer_ids = $request->customers;
+        $customers = Customer::findMany($customer_ids);
+        $service = Service::create($request->only(['name','description','start_date','end_date']));
+        $service->staffs()->saveMany($staffs);
+        $service->customers()->saveMany($customers);
         return redirect()->route('service.show',compact('service'));
     }
 

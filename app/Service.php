@@ -10,7 +10,8 @@ class Service extends Model
     protected $fillable = [
         'name',
         'description',
-        'duration',
+        'start_date',
+        'end_date'
     ];
     
     public function staffs()
@@ -21,6 +22,11 @@ class Service extends Model
     public function appointments()
     {
         return $this->hasMany('App\Appointment');
+    }
+
+    public function customers()
+    {
+        return $this->belongsToMany('App\Customer');
     }
 
     public function timeslots()

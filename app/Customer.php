@@ -16,4 +16,9 @@ class Customer extends Model
     {
         return $this->hasMany('App\Appointment');
     }
+
+    public function services()
+    {
+        return $this->belongsToMany('App\Service');
+    }
 }

@@ -29,6 +29,12 @@ class CreateServicesTable extends Migration
             $table->timestamps();
         });
 
+        Schema::create('customer_service', function (Blueprint $table) {
+            $table->integer('customer_id')->unsigned();
+            $table->integer('service_id')->unsigned();
+            $table->timestamps();
+        })
+
     }
 
     /**
@@ -40,5 +46,6 @@ class CreateServicesTable extends Migration
     {
         Schema::dropIfExists('services');
         Schema::dropIfExists('service_staff');
+        Schema::dropIfExists('customer_service');
     }
 }
