@@ -25,6 +25,7 @@ class ServiceFormRequest extends FormRequest
     {
         return [
             'name' => 'required|max:100',
+            'duration' => 'max:1000',
             'start_date' => 'required',
             'end_date' => 'required',
         ];

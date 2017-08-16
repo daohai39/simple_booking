@@ -33,7 +33,7 @@ class CreateServicesTable extends Migration
             $table->integer('customer_id')->unsigned();
             $table->integer('service_id')->unsigned();
             $table->timestamps();
-        })
+        });
 
     }
 

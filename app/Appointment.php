@@ -19,8 +19,10 @@ class Appointment extends Model
         $this->belongsTo('App\Customer');
     }
 
-    public function service()
+    public function schedules()
     {
-        $this->belongsTo('App\Service');
+        $this->belongsTo('App\Schedule');
     }
+
+
 }

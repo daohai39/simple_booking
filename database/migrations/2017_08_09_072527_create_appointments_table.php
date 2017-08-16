@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,10 +15,9 @@ class CreateAppointmentsTable extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
-            $table->integer('customer_id');
-            $table->integer('service_id');
+            $table->integer('customer_id')->unsinged();
+            $table->integer('schedule_id')->unsigned();
+            $table->date('booked_at');
             $table->timestamps();
         });
     }

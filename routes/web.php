@@ -20,9 +20,10 @@ Route::prefix('admin')->middleware(['web'])->group(function() {
         return view('backend.dashboard');
     });
     Route::resource('service','ServiceController');
-    Route::get('staff/{staff}/service/{service}', 'StaffServiceController@show');
-    Route::patch('staff/{staff}/service/{service}', 'StaffServiceController@update');
-    Route::resource('staff','StaffController');
     Route::resource('customer', 'CustomerController');
-    Route::resource('appointment', 'AppointmentController');
+    Route::resource('appointment', 'AppointmentController',['except' => [
+        'delete','update'
+    ]]);
+    Route::get('staff/{staff}/service', 'ServiceStaffController@index');
+    Route::resource('staff','StaffController');
 });

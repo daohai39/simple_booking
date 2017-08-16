@@ -20,8 +20,8 @@ class Staff extends Model
         return $this->belongsToMany('App\Service');
     }
     
-    public function timeslots()
+    public function schedules()
     {
-        return $this->hasMany('App\TimeSlot');
+        return $this->hasMany('App\Schedule');
     }
 }
